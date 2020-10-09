@@ -128,3 +128,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ]
 }
+MEDIA_ROOT = 'media/'
+
+MEDIA_URL = '/media/'
