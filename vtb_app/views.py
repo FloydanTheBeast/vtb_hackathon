@@ -39,6 +39,7 @@ class CarRecognizeView(APIView):
             photo = request.data.get('photo')
             response = car_recognize_method(photo.file.read())
             return Response(response)
+
         return Response(serializer.errors)
 
 
@@ -57,9 +58,10 @@ class CarLoanView(APIView):
     # parser_classes = [ImageUploadParser]
 
     def post(self, request, format=None):
-        serializer = CarLoanSerializer(data=request.data)
+        serializer = CarLoanSerializer(data = request.data)
         if serializer.is_valid():
             data = serializer.validated_data
             response = car_loan_method(serializer.data)
             return Response(response)
+
         return Response(serializer.errors)
