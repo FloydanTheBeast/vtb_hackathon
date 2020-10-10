@@ -28,46 +28,7 @@ class TestView(APIView):
         return Response(serializer.errors)
 
 
-class CarRecognizeView(APIView):
-    """
-    List all snippets, or create a new snippet.
-    """
-
-    # permission_classes = [permissions.IsAuthenticated]
-    # parser_classes = [ImageUploadParser]
-
-    def post(self, request, format=None):
-        serializer = CarRecognizeSerializer(data=request.data)
-        if serializer.is_valid():
-            photo = request.data.get('photo')
-            response = car_recognize_method(photo)
-            if request.auth:
-                sh_model = SearchHistory(car=response, user=request.user)
-                sh_model.save()
-            return Response(response)
-
-        return Response(serializer.errors)
-
-
 class MarketplaceView(APIView):
     def get(self, request, format=None):
         response = get_marketplace_data()
         return Response(response)
-
-
-class CarLoanView(APIView):
-    """
-    List all snippets, or create a new snippet.
-    """
-
-    # permission_classes = [permissions.IsAuthenticated]
-    # parser_classes = [ImageUploadParser]
-
-    def post(self, request, format=None):
-        serializer = CarLoanSerializer(data=request.data)
-        if serializer.is_valid():
-            data = serializer.validated_data
-            response = car_loan_method(serializer.data)
-            return Response(response)
-
-        return Response(serializer.errors)

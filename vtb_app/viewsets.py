@@ -5,6 +5,7 @@ from rest_framework import permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import mixins
+from .vtb_api import *
 
 
 class TestViewSet(viewsets.ViewSet):
@@ -66,3 +67,39 @@ class ExtraUserDataViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class CarRecognizeViewSet(viewsets.ViewSet):
+    serializer_class = CarRecognizeSerializer
+
+    def list(self, request):
+        return Response('Car recognize Method')
+        pass
+
+    def create(self, request):
+        serializer = CarRecognizeSerializer(data=request.data)
+        if serializer.is_valid():
+            photo = request.data.get('photo')
+            response = car_recognize_method(photo)
+            if request.auth:
+                sh_model = SearchHistory(car=response, user=request.user)
+                sh_model.save()
+            return Response(response)
+        return Response(serializer.errors)
+
+
+class CarLoanViewSet(viewsets.ViewSet):
+    serializer_class = CarLoanSerializer
+
+    def list(self, request):
+        return Response('Car loan Method')
+        pass
+
+    def create(self, request):
+        serializer = CarLoanSerializer(data=request.data)
+        if serializer.is_valid():
+            data = serializer.validated_data
+            response = car_loan_method(serializer.data)
+            return Response(response)
+
+        return Response(serializer.errors)

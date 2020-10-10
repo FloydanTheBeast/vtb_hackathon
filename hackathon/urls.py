@@ -28,19 +28,15 @@ from vtb_app import viewsets
 router = DefaultRouter()
 router.register(r'search_history', viewsets.SearchHistoryViewSet)
 router.register(r'extra_user_data', viewsets.ExtraUserDataViewSet)
+router.register(r'car_recognize', viewsets.CarRecognizeViewSet, basename='car_recognize')
+router.register(r'car_loan', viewsets.CarLoanViewSet, basename='car_loan')
 
 api_urlpatterns = [
-    # path('', include('rest_framework.urls')),
-    path('accounts/', include('rest_registration.api.urls')),
     path('accounts/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('accounts/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('test/', TestView.as_view()),
-    path('car_recognize/', CarRecognizeView.as_view()),
+    path('test/', TestView.as_view(), name='test'),
     path('marketplace/', MarketplaceView.as_view()),
-    path('car_loan/', CarLoanView.as_view()),
     path('', include(router.urls))
-    # path('search_history/', SearchHistoryViewSet.as_view({"get": "list"})),
-    # path('search_history/<int:pk>/', SearchHistoryViewSet.as_view({"delete": "destroy"}))
 ]
 
 urlpatterns = [
