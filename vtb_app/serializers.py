@@ -76,3 +76,20 @@ class SearchHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = SearchHistory
         exclude = ['user']
+
+
+class ExtraUserDataSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(allow_blank=True, allow_null=True, required=False)
+    income_amount = serializers.IntegerField(allow_null=True, required=False)
+    birth_date_time = serializers.CharField(allow_blank=True, required=False)
+    birth_place = serializers.CharField(allow_blank=True, required=False)
+    family_name = serializers.CharField(allow_blank=True, required=False)
+    first_name = serializers.CharField(allow_blank=True, required=False)
+    gender = serializers.ChoiceField(choices=genders, allow_blank=True, required=False)
+    middle_name = serializers.CharField(allow_blank=True, required=False)
+    nationality_country_code = serializers.CharField(allow_blank=True, required=False)
+    phone = serializers.CharField(allow_blank=True, required=False)
+
+    class Meta:
+        model = ExtraUserData
+        exclude = ['user']
