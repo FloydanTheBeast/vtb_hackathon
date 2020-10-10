@@ -44,6 +44,7 @@ class CarRecognizeView(APIView):
             sh_model = SearchHistory(car=response, user=request.user)
             sh_model.save()
             return Response(response)
+
         return Response(serializer.errors)
 
 
@@ -62,9 +63,10 @@ class CarLoanView(APIView):
     # parser_classes = [ImageUploadParser]
 
     def post(self, request, format=None):
-        serializer = CarLoanSerializer(data=request.data)
+        serializer = CarLoanSerializer(data = request.data)
         if serializer.is_valid():
             data = serializer.validated_data
             response = car_loan_method(serializer.data)
             return Response(response)
+
         return Response(serializer.errors)
