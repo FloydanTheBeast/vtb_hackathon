@@ -42,6 +42,12 @@ class CarRecognizeView(APIView):
         return Response(serializer.errors)
 
 
+class MarketplaceView(APIView):
+    def get(self, request, format=None):
+        response = get_marketplace_data()
+        return Response(response)
+
+
 class CarLoanView(APIView):
     """
     List all snippets, or create a new snippet.
