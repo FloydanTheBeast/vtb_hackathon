@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from .serializers import *
 from rest_framework import permissions
 from .vtb_api import *
+import json
 from rest_framework.parsers import FileUploadParser
 
 
@@ -37,5 +38,22 @@ class CarRecognizeView(APIView):
         if serializer.is_valid():
             photo = request.data.get('photo')
             response = car_recognize_method(photo.file.read())
+            return Response(response)
+        return Response(serializer.errors)
+
+
+class CarLoanView(APIView):
+    """
+    List all snippets, or create a new snippet.
+    """
+
+    # permission_classes = [permissions.IsAuthenticated]
+    # parser_classes = [ImageUploadParser]
+
+    def post(self, request, format=None):
+        serializer = CarLoanSerializer(data=request.data)
+        if serializer.is_valid():
+            data = serializer.validated_data
+            response = car_loan_method(serializer.data)
             return Response(response)
         return Response(serializer.errors)
