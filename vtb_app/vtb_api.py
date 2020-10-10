@@ -15,10 +15,8 @@ headers = {"accept": "application/json", "content-type": "application/json", "x-
 
 def car_recognize_method(image):
     url = f"{api_base_url}/car-recognize"
-    image = base64.b64encode(image).decode()
     data = {"content": image}
     r = requests.post(url, data=json.dumps(data), headers=headers)
-
     if r.status_code == 200:
         cars = json.loads(r.text).get("probabilities")
         cars = list(cars.items())

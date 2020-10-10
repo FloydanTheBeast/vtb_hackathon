@@ -11,7 +11,7 @@ class TestSerializer(serializers.Serializer):
 
 
 class CarRecognizeSerializer(serializers.Serializer):
-    photo = serializers.ImageField()
+    photo = serializers.CharField()
 
 
 class PersonSerializer(serializers.Serializer):
