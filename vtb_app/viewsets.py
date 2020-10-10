@@ -52,3 +52,17 @@ class SearchHistoryViewSet(mixins.ListModelMixin,
     def delete_all(self, request):
         SearchHistory.objects.all().delete()
         return Response("Successfully deleted search history")
+
+
+class ExtraUserDataViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ExtraUserDataSerializer
+    queryset = ExtraUserData.objects.all()
+
+    def get_queryset(self):
+        queryset = self.queryset
+        query_set = queryset.filter(user=self.request.user)
+        return query_set
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

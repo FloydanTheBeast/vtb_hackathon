@@ -27,6 +27,7 @@ from vtb_app import viewsets
 # Create a router and register our viewsets with it.
 router = DefaultRouter()
 router.register(r'search_history', viewsets.SearchHistoryViewSet)
+router.register(r'extra_user_data', viewsets.ExtraUserDataViewSet)
 
 api_urlpatterns = [
     # path('', include('rest_framework.urls')),
