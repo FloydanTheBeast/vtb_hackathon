@@ -1,1 +1,1 @@
-web: gunicorn vtbhackbackend.wsgi --log-file -
+web: gunicorn hackathon.wsgi --timeout 15 --keep-alive 5 --log-level debug
