@@ -41,8 +41,9 @@ class CarRecognizeView(APIView):
         if serializer.is_valid():
             photo = request.data.get('photo')
             response = car_recognize_method(photo)
-            sh_model = SearchHistory(car=response, user=request.user)
-            sh_model.save()
+            if request.auth:
+                sh_model = SearchHistory(car=response, user=request.user)
+                sh_model.save()
             return Response(response)
 
         return Response(serializer.errors)
