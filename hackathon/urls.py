@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from vtb_app.views import *
+from vtb_app.viewsets import *
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -29,7 +30,9 @@ api_urlpatterns = [
     path('test/', TestView.as_view()),
     path('car_recognize/', CarRecognizeView.as_view()),
     path('marketplace/', MarketplaceView.as_view()),
-    path('car_loan/', CarLoanView.as_view())
+    path('car_loan/', CarLoanView.as_view()),
+    path('search_history/', SearchHistoryViewSet.as_view({"get": "list"})),
+    path('search_history/<int:pk>/', SearchHistoryViewSet.as_view({"delete": "destroy"}))
 ]
 
 urlpatterns = [

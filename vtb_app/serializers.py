@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
+from .models import *
 from django.utils import timezone
 
 genders = [('male', 'male'), ('female', 'female'), ('unknown', 'unknown')]
@@ -69,3 +70,9 @@ class CarLoanSerializer(serializers.Serializer):
     requested_term = serializers.IntegerField()
     trade_mark = serializers.CharField()
     vehicle_cost = serializers.IntegerField()
+
+
+class SearchHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SearchHistory
+        exclude = ['user']

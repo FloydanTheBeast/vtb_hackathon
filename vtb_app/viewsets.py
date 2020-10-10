@@ -1,4 +1,6 @@
 from rest_framework import viewsets
+from .serializers import *
+from .models import *
 
 
 class TestViewSet(viewsets.ViewSet):
@@ -17,7 +19,6 @@ class TestViewSet(viewsets.ViewSet):
         pass
 
     def retrieve(self, request, pk=None):
-
         pass
 
     def update(self, request, pk=None):
@@ -28,3 +29,13 @@ class TestViewSet(viewsets.ViewSet):
 
     def destroy(self, request, pk=None):
         pass
+
+
+class SearchHistoryViewSet(viewsets.ModelViewSet):
+    serializer_class = SearchHistorySerializer
+    queryset = SearchHistory.objects.all()
+
+    def get_queryset(self):
+        queryset = self.queryset
+        query_set = queryset.filter(user=self.request.user)
+        return query_set

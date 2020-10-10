@@ -5,6 +5,9 @@ from rest_framework.response import Response
 from .serializers import *
 from rest_framework import permissions
 from .vtb_api import *
+from .models import *
+from .serializers import *
+from rest_framework import generics
 import json
 from rest_framework.parsers import FileUploadParser
 
@@ -38,6 +41,8 @@ class CarRecognizeView(APIView):
         if serializer.is_valid():
             photo = request.data.get('photo')
             response = car_recognize_method(photo.file.read())
+            sh_model = SearchHistory(car=response, user=request.user)
+            sh_model.save()
             return Response(response)
         return Response(serializer.errors)
 
