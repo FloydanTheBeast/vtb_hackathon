@@ -9,5 +9,5 @@ class VtbAppConfig(AppConfig):
     # Preload marketplace data once the app is ready
     def ready(self):
         with open("marketplace.json", "w") as file:
-            dump(get_marketplace_data(), file)
+            dump(get_marketplace_data(), file, ensure_ascii=False)
         
