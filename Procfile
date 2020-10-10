@@ -1,0 +1,1 @@
+web: gunicorn vtbhackbackend.wsgi --log-file -
