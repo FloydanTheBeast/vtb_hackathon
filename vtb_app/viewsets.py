@@ -1,6 +1,10 @@
 from rest_framework import viewsets
 from .serializers import *
 from .models import *
+from rest_framework import permissions
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework import mixins
 
 
 class TestViewSet(viewsets.ViewSet):
@@ -31,7 +35,11 @@ class TestViewSet(viewsets.ViewSet):
         pass
 
 
-class SearchHistoryViewSet(viewsets.ModelViewSet):
+class SearchHistoryViewSet(mixins.ListModelMixin,
+                           mixins.RetrieveModelMixin,
+                           mixins.DestroyModelMixin,
+                           viewsets.GenericViewSet):
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = SearchHistorySerializer
     queryset = SearchHistory.objects.all()
 
@@ -39,3 +47,8 @@ class SearchHistoryViewSet(viewsets.ModelViewSet):
         queryset = self.queryset
         query_set = queryset.filter(user=self.request.user)
         return query_set
+
+    @action(detail=False, methods=['delete'])
+    def delete_all(self, request):
+        SearchHistory.objects.all().delete()
+        return Response("Successfully deleted search history")

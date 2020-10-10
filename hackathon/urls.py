@@ -21,6 +21,12 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from rest_framework.routers import DefaultRouter
+from vtb_app import viewsets
+
+# Create a router and register our viewsets with it.
+router = DefaultRouter()
+router.register(r'search_history', viewsets.SearchHistoryViewSet)
 
 api_urlpatterns = [
     # path('', include('rest_framework.urls')),
@@ -31,8 +37,9 @@ api_urlpatterns = [
     path('car_recognize/', CarRecognizeView.as_view()),
     path('marketplace/', MarketplaceView.as_view()),
     path('car_loan/', CarLoanView.as_view()),
-    path('search_history/', SearchHistoryViewSet.as_view({"get": "list"})),
-    path('search_history/<int:pk>/', SearchHistoryViewSet.as_view({"delete": "destroy"}))
+    path('', include(router.urls))
+    # path('search_history/', SearchHistoryViewSet.as_view({"get": "list"})),
+    # path('search_history/<int:pk>/', SearchHistoryViewSet.as_view({"delete": "destroy"}))
 ]
 
 urlpatterns = [
