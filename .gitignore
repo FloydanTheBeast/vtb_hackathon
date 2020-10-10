@@ -262,3 +262,5 @@ fabric.properties
 
 # .gitignore for virtual environment
 /venv_dlab
+
+/vtb_app/migrations
