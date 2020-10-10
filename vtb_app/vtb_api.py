@@ -7,7 +7,7 @@ import os
 load_dotenv()
 
 key = os.getenv('API_KEY') \
-    or os.environ.get("AWS_S3_ACCESS_KEY_ID")
+      or os.environ.get("AWS_S3_ACCESS_KEY_ID")
 
 api_base_url = "https://gw.hackathon.vtb.ru/vtb/hackathon"
 headers = {"accept": "application/json", "content-type": "application/json", "x-ibm-client-id": key}
