@@ -96,7 +96,7 @@ class CarRecognizeViewSet(viewsets.ViewSet):
         pass
 
     def create(self, request):
-        serializer = CarRecognizeSerializer(data=request.data)
+        serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             photo = request.data.get('photo')
             response = car_recognize_method(photo)
@@ -115,14 +115,33 @@ class CarLoanViewSet(viewsets.ViewSet):
         pass
 
     def create(self, request):
-        serializer = CarLoanSerializer(data=request.data)
+        serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             data = serializer.validated_data
-            response = car_loan_method(serializer.data)
+            response = request_vtb_api(serializer.data, 'carloan')
             if request.auth:
                 if request.auth:
                     lh_model = LoanHistory(response=response, user=request.user)
                     lh_model.save()
             return Response(response)
-
         return Response(serializer.errors)
+
+
+# class CalculateViewSet(viewsets.ViewSet):
+#     serializer_class = CarLoanSerializer
+#
+#     def list(self, request):
+#         return Response('Calculate Method')
+#         pass
+#
+#     def create(self, request):
+#         serializer = self.serializer_class(data=request.data)
+#         if serializer.is_valid():
+#             data = serializer.validated_data
+#             response = request_vtb_api(serializer.data, 'carloan')
+#             if request.auth:
+#                 if request.auth:
+#                     lh_model = LoanHistory(response=response, user=request.user)
+#                     lh_model.save()
+#             return Response(response)
+#         return Response(serializer.errors)

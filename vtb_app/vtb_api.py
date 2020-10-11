@@ -33,6 +33,23 @@ def car_recognize_method(image):
 #         return json.loads(r.text)
 #     return r.text
 
+def request_vtb_api(data, method):
+    url = f"{api_base_url}/{method}"
+    r = requests.post(url, data=json.dumps(data), headers=headers)
+
+    if r.status_code == 200:
+        return json.loads(r.text)
+    return r.text
+
+
+def calculate(data):
+    url = f"{api_base_url}/calculate"
+    r = requests.post(url, data=json.dumps(data), headers=headers)
+
+    if r.status_code == 200:
+        return json.loads(r.text)
+    return r.text
+
 
 def car_loan_method(data):
     url = f"{api_base_url}/carloan"
