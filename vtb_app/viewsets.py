@@ -137,8 +137,8 @@ class MarketplaceViewSet(viewsets.ViewSet):
         if query_serializer.is_valid():
             query = query_serializer.validated_data.get('query')
 
-            with open('marketplace.json', 'r') as file:
-                marketplace_data = json.load(file)
+            with open('marketplace.json', 'r', encoding='utf-8') as file:
+                marketplace_data = json.load(file, )
 
                 if query in marketplace_data:
                     serializer = CarInfoSerializer(data=marketplace_data[query])
