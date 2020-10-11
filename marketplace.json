@@ -1,0 +1,229 @@
+{
+    "BMW 3": {
+        "make": "BMW",
+        "model": "3 серия",
+        "types": [
+            "Седан",
+            "Хэтчбэк"
+        ],
+        "image_url": "https://avatars.mds.yandex.net/get-autoru-vos/2160801/ee668ed2454a37b52221b7d0eaa7746e/1200x900n",
+        "minPrice": 2580000,
+        "maxPrice": 4820000,
+        "specs": {
+            "speedLimit": "223 - 250 км/ч",
+            "acceleration": "8.4 - 4.4 с.",
+            "fuelConsumption": "10.0 - 4.7 л/100 км",
+            "horsePowers": "156 - 387 л.с."
+        }
+    },
+    "BMW 5": {
+        "make": "BMW",
+        "model": "5 серия",
+        "types": [
+            "Седан"
+        ],
+        "image_url": "https://avatars.mds.yandex.net/get-autoru-vos/2092621/78bf18123d6910411704df3500614b25/1200x900n",
+        "minPrice": 3520000,
+        "maxPrice": 7820000,
+        "specs": {
+            "speedLimit": "235 - 250 км/ч",
+            "acceleration": "3.8 - 7.8 с.",
+            "fuelConsumption": "14.8 - 4.4 л/100 км",
+            "horsePowers": "184 - 530 л.с."
+        }
+    },
+    "Cadillac ESCALADE": {
+        "make": "Cadillac",
+        "model": "Escalade",
+        "types": [
+            "Внедорожник"
+        ],
+        "image_url": "https://avatars.mds.yandex.net/get-autoru-vos/1970300/7ef9c3801a798c2ecdac1be497a75c6e/1200x900n",
+        "minPrice": 5636000,
+        "maxPrice": 7465000,
+        "specs": {
+            "speedLimit": "180 км/ч",
+            "acceleration": "6.9 - 6.7 с.",
+            "fuelConsumption": "17.1 - 9.9 л/100 км",
+            "horsePowers": "426 л.с."
+        }
+    },
+    "Chevrolet Tahoe": {
+        "make": "Chevrolet",
+        "model": "Tahoe",
+        "types": [
+            "Внедорожник"
+        ],
+        "image_url": "https://di-uploads-pod1.dealerinspire.com/depaulachevy/uploads/2017/03/chevy_tahoe2017_black.jpg",
+        "minPrice": 4990000,
+        "maxPrice": 5640000,
+        "specs": {
+            "speedLimit": "180 км/ч",
+            "acceleration": "6.8 с.",
+            "fuelConsumption": "18.3 - 10.6 л/100 км",
+            "horsePowers": "426 л.с."
+        }
+    },
+    "Hyundai Genesis": {
+        "make": "Hyundai",
+        "model": "Genesis",
+        "types": [
+            "Седан",
+            "Купе"
+        ],
+        "image_url": "https://a.d-cd.net/Q0AAAgIYhuA-1920.jpg",
+        "minPrice": 2270000,
+        "maxPrice": 7260000,
+        "specs": {
+            "speedLimit": "240 км/ч",
+            "acceleration": "8.3 - 5.7 с.",
+            "fuelConsumption": "17.8 - 6.8 л/100 км",
+            "horsePowers": "197 - 413 л.с."
+        }
+    },
+    "Jaguar F-PACE": {
+        "make": "Jaguar",
+        "model": "F-Pace",
+        "types": [
+            "Внедорожник"
+        ],
+        "image_url": "https://ymimg1.b8cdn.com/uploads/car_model/5716/pictures/4820089/01.jpg",
+        "minPrice": 3600000,
+        "maxPrice": 8850000,
+        "specs": {
+            "speedLimit": "217 км/ч",
+            "acceleration": "6.8 с.",
+            "fuelConsumption": "9.1 - 6.6 л/100 км",
+            "horsePowers": "180 - 249 л.с."
+        }
+    },
+    "KIA K5": {
+        "make": "KIA",
+        "model": "K5",
+        "types": [
+            "Седан"
+        ],
+        "image_url": "https://afaaqreservations.com/wp-content/uploads/2019/12/Untitled-15-1024x542.png",
+        "minPrice": 1490000,
+        "maxPrice": 2200000,
+        "specs": {
+            "speedLimit": "200 - 210 км/ч",
+            "acceleration": "10.6 - 8.6 с.",
+            "fuelConsumption": "7.2 - 7.1 л/100 км",
+            "horsePowers": "150 - 194 л.с."
+        }
+    },
+    "KIA Optima": {
+        "make": "KIA",
+        "model": "Optima",
+        "types": [
+            "Седан"
+        ],
+        "image_url": "https://afaaqreservations.com/wp-content/uploads/2019/12/Untitled-15-1024x542.png",
+        "minPrice": 1565000,
+        "maxPrice": 2145000,
+        "specs": {
+            "speedLimit": "202 - 210 км/ч",
+            "acceleration": "10.7 - 7.4 с.",
+            "fuelConsumption": "12 - 5.8 л/100 км",
+            "horsePowers": "150 - 245 л.с."
+        }
+    },
+    "KIA Sportage": {
+        "make": "KIA",
+        "model": "Sportage",
+        "types": [
+            "Внедорожник"
+        ],
+        "image_url": "https://www.arubatopdrive.com/files/Kia_Sorento.png",
+        "minPrice": 1500000,
+        "maxPrice": 2370000,
+        "specs": {
+            "speedLimit": "180 - 185 км/ч",
+            "acceleration": "11.6 - 9.6 с.",
+            "fuelConsumption": "12 - 6.1 л/100 км",
+            "horsePowers": "150 - 184 л.с."
+        }
+    },
+    "Land Rover RANGE ROVER VELAR": {
+        "make": "Land Rover",
+        "model": "Range Rover Velar",
+        "types": [
+            "Внедорожник"
+        ],
+        "image_url": "https://lh3.googleusercontent.com/proxy/ojY1Rh-gNAfbDJlRs2hvyUmtnUji22DdmeAxw3vMO8GEcy5ij45N-Rp5poaNcLQSego0ZYT8Yb3UR8YgATuECDzMB4rV3Lsn6pK_osDYkU9K",
+        "minPrice": 4190000,
+        "maxPrice": 8224000,
+        "specs": {
+            "speedLimit": "209 - 244 км/ч",
+            "acceleration": "8.9 - 6.4 с.",
+            "fuelConsumption": "12 - 6.1 л/100 км",
+            "horsePowers": "150 - 184 л.с."
+        }
+    },
+    "Mazda 3": {
+        "make": "Mazda",
+        "model": "3",
+        "types": [
+            "Седан"
+        ],
+        "image_url": "https://tuninga.ru/upload/iblock/aa6/mazda_3_3073.jpg",
+        "minPrice": 1570000,
+        "maxPrice": 1809000,
+        "specs": {
+            "speedLimit": "169 - 250 км/ч",
+            "acceleration": "14.5 - 8 с.",
+            "fuelConsumption": "12.2 - 3.9 л/100 км",
+            "horsePowers": "84 - 260 л.с."
+        }
+    },
+    "Mazda 6": {
+        "make": "Mazda",
+        "model": "6",
+        "types": [
+            "Седан"
+        ],
+        "image_url": "https://avatars.mds.yandex.net/get-autoru-vos/1589660/4e24847dcdb624340076d5adec4b286d/1200x900",
+        "minPrice": 1562000,
+        "maxPrice": 2414000,
+        "specs": {
+            "speedLimit": "189 - 240 км/ч",
+            "acceleration": "10.8 - 7 с.",
+            "fuelConsumption": "13.8 - 3.9 л/100 км",
+            "horsePowers": "120 - 274 л.с."
+        }
+    },
+    "Mercedec A": {
+        "make": "Mercedec-Benz",
+        "model": "А-Класс",
+        "types": [
+            "Седан",
+            "Хэтчбэк"
+        ],
+        "image_url": "https://d3h256n3bzippp.cloudfront.net/C350e-white-background-2.jpg",
+        "minPrice": 2330000,
+        "maxPrice": 4310000,
+        "specs": {
+            "speedLimit": "225 - 270 км/ч",
+            "acceleration": "8 - 3.9 с.",
+            "fuelConsumption": "10.5 - 5.1 л/100 км",
+            "horsePowers": "150 - 421 л.с."
+        }
+    },
+    "Toyota Camry": {
+        "make": "Toyota",
+        "model": "Camry",
+        "types": [
+            "Седан"
+        ],
+        "image_url": "https://d2v1gjawtegg5z.cloudfront.net/uploads/files/000/020/589/original/toyota-camry-hybrid-compressor.png?1540236897",
+        "minPrice": 1741000,
+        "maxPrice": 2719000,
+        "specs": {
+            "speedLimit": "210 - 220 км/ч",
+            "acceleration": "11 - 7.7 с.",
+            "fuelConsumption": "12.5 - 5.5 л/100 км",
+            "horsePowers": "150 - 249 л.с."
+        }
+    }
+}
