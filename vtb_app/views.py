@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -8,7 +9,6 @@ from .vtb_api import *
 from .models import *
 from .serializers import *
 from rest_framework import generics
-import json
 from rest_framework.parsers import FileUploadParser
 
 
@@ -26,9 +26,3 @@ class TestView(APIView):
         if serializer.is_valid():
             return Response(serializer.data.get('text'))
         return Response(serializer.errors)
-
-
-# class MarketplaceView(APIView):
-#     def get(self, request, format=None):
-#         response = get_marketplace_data()
-#         return Response(response)

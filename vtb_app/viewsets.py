@@ -6,6 +6,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import mixins
 from .vtb_api import *
+import json
 
 
 class TestViewSet(viewsets.ViewSet):
@@ -126,3 +127,20 @@ class CarLoanViewSet(viewsets.ViewSet):
             return Response(response)
 
         return Response(serializer.errors)
+
+class MarketplaceViewSet(viewsets.ViewSet):
+    def create(self, request):
+        query = request.data.get('query', '')
+
+        with open('marketplace.json', 'r') as file:
+            marketplaceData = json.load(file)
+
+            if query in marketplaceData:
+                serializer = CarInfoSerializer(data = marketplaceData[query])
+
+                if serializer.is_valid():
+                    return Response(marketplaceData[query])
+                
+                return Response(serializer.errors, status = 400)
+            
+        return Response({ error: 'No cars have been found' }, status = 400)
