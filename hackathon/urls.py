@@ -35,7 +35,7 @@ api_urlpatterns = [
     path('accounts/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('accounts/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('test/', TestView.as_view(), name='test'),
-    path('marketplace/', MarketplaceView.as_view()),
+    path('accounts/', include('rest_registration.api.urls')),
     path('', include(router.urls))
 ]
 

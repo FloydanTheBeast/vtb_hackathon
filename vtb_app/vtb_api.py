@@ -25,13 +25,13 @@ def car_recognize_method(image):
     return r.text
 
 
-def get_marketplace_data():
-    url = f"{api_base_url}/marketplace"
-    r = requests.get(url, headers=headers)
-
-    if r.status_code == 200:
-        return json.loads(r.text)
-    return r.text
+# def get_marketplace_data():
+#     url = f"{api_base_url}/marketplace"
+#     r = requests.get(url, headers=headers)
+#
+#     if r.status_code == 200:
+#         return json.loads(r.text)
+#     return r.text
 
 
 def car_loan_method(data):
