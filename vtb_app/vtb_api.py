@@ -27,7 +27,7 @@ def car_recognize_method(image):
         cars = json.loads(r.text).get("probabilities")
         cars = list(cars.items())
         cars.sort(key=lambda i: i[1], reverse=True)
-        return json.dumps({"car": cars[0]})
+        return {"car": cars[0]}
     return r.text
 
 
