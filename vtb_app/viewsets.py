@@ -128,6 +128,7 @@ class CarLoanViewSet(viewsets.ViewSet):
 
         return Response(serializer.errors)
 
+
 class MarketplaceViewSet(viewsets.ViewSet):
     def create(self, request):
         query = request.data.get('query', '')
@@ -144,3 +145,16 @@ class MarketplaceViewSet(viewsets.ViewSet):
                 return Response(serializer.errors, status = 400)
             
         return Response({ error: 'No cars have been found' }, status = 400)
+
+
+class PaymentsGraphViewSet(viewsets.ViewSet):
+    def create(self, request):
+        serializer = PaymentsGraphSerializer(data = request.data)
+
+        if serializer.is_valid():
+            response = payments_graph_method(serializer.validated_data)
+
+            # TODO: Check auth if needed
+            return Response(response)
+        
+        return Response(serializer.errors)

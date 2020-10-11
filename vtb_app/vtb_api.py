@@ -3,14 +3,20 @@ import base64
 import json
 from dotenv import load_dotenv
 import os
+from .utils import *
 
 load_dotenv()
 
-key = os.getenv('API_KEY') \
+key = os.getenv("API_KEY") \
       or os.environ.get("AWS_S3_ACCESS_KEY_ID")
 
+# Api request constants
 api_base_url = "https://gw.hackathon.vtb.ru/vtb/hackathon"
-headers = {"accept": "application/json", "content-type": "application/json", "x-ibm-client-id": key}
+headers = {
+    "accept": "application/json",
+    "content-type": "application/json",
+    "x-ibm-client-id": key
+}
 
 
 def car_recognize_method(image):
@@ -40,4 +46,22 @@ def car_loan_method(data):
 
     if r.status_code == 200:
         return json.loads(r.text)
+
     return r.text
+
+
+def payments_graph_method(data):
+    url = f"{api_base_url}/payments-graph"
+    r = requests.post(url, data = json.dumps(data), headers = headers)
+
+    if r.status_code == 200:
+        data = json.loads(r.text)
+
+        payments = data.get('payments')
+        data['payments'] = trimPaymentsGraph(payments)
+
+        return data
+    
+    return r.text
+
+

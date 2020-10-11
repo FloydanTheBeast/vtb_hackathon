@@ -116,3 +116,10 @@ class CarInfoSerializer(serializers.Serializer):
     minPrice = serializers.IntegerField()
     maxPrice = serializers.IntegerField()
     specs = SpecsSerializer()
+
+class PaymentsGraphSerializer(serializers.Serializer):
+    contractRate = serializers.FloatField()
+    lastPayment = serializers.IntegerField()
+    loanAmount = serializers.IntegerField()
+    payment = serializers.IntegerField()
+    term = serializers.IntegerField()
