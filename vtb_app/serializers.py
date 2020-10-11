@@ -78,6 +78,12 @@ class SearchHistorySerializer(serializers.ModelSerializer):
         exclude = ['user']
 
 
+class LoanHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LoanHistory
+        exclude = ['user']
+
+
 class ExtraUserDataSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(allow_blank=True, allow_null=True, required=False)
     income_amount = serializers.IntegerField(allow_null=True, required=False)

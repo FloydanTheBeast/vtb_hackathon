@@ -55,6 +55,25 @@ class SearchHistoryViewSet(mixins.ListModelMixin,
         return Response("Successfully deleted search history")
 
 
+class LoanHistoryViewSet(mixins.ListModelMixin,
+                         mixins.RetrieveModelMixin,
+                         mixins.DestroyModelMixin,
+                         viewsets.GenericViewSet):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = LoanHistorySerializer
+    queryset = LoanHistory.objects.all()
+
+    def get_queryset(self):
+        queryset = self.queryset
+        query_set = queryset.filter(user=self.request.user)
+        return query_set
+
+    @action(detail=False, methods=['delete'])
+    def delete_all(self, request):
+        LoanHistory.objects.all().delete()
+        return Response("Successfully deleted loan history")
+
+
 class ExtraUserDataViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = ExtraUserDataSerializer
@@ -82,7 +101,7 @@ class CarRecognizeViewSet(viewsets.ViewSet):
             photo = request.data.get('photo')
             response = car_recognize_method(photo)
             if request.auth:
-                sh_model = SearchHistory(car=response, user=request.user)
+                sh_model = SearchHistory(response=response, user=request.user)
                 sh_model.save()
             return Response(response)
         return Response(serializer.errors)
@@ -100,6 +119,10 @@ class CarLoanViewSet(viewsets.ViewSet):
         if serializer.is_valid():
             data = serializer.validated_data
             response = car_loan_method(serializer.data)
+            if request.auth:
+                if request.auth:
+                    lh_model = LoanHistory(response=response, user=request.user)
+                    lh_model.save()
             return Response(response)
 
         return Response(serializer.errors)
