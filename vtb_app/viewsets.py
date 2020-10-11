@@ -75,6 +75,25 @@ class LoanHistoryViewSet(mixins.ListModelMixin,
         return Response("Successfully deleted loan history")
 
 
+class PaymentsGraphHistoryViewSet(mixins.ListModelMixin,
+                                  mixins.RetrieveModelMixin,
+                                  mixins.DestroyModelMixin,
+                                  viewsets.GenericViewSet):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = PaymentsGraphHistorySerializer
+    queryset = PaymentsGraphHistory.objects.all()
+
+    def get_queryset(self):
+        queryset = self.queryset
+        query_set = queryset.filter(user=self.request.user)
+        return query_set
+
+    @action(detail=False, methods=['delete'])
+    def delete_all(self, request):
+        PaymentsGraphHistory.objects.all().delete()
+        return Response("Successfully deleted payments graph history")
+
+
 class ExtraUserDataViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = ExtraUserDataSerializer
@@ -92,9 +111,9 @@ class ExtraUserDataViewSet(viewsets.ModelViewSet):
 class CarRecognizeViewSet(viewsets.ViewSet):
     serializer_class = CarRecognizeSerializer
 
-    def list(self, request):
-        return Response('Car recognize Method')
-        pass
+    # def list(self, request):
+    #     return Response('Car recognize Method')
+    #     pass
 
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
@@ -111,19 +130,19 @@ class CarRecognizeViewSet(viewsets.ViewSet):
 class CarLoanViewSet(viewsets.ViewSet):
     serializer_class = CarLoanSerializer
 
-    def list(self, request):
-        return Response('Car loan Method')
-        pass
+    # def list(self, request):
+    #     return Response('Car loan Method')
+    #     pass
 
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             data = serializer.validated_data
-            response = request_vtb_api(serializer.data, 'carloan')
+            response = request_vtb_api(data, 'carloan')
+            print(request.auth)
             if request.auth:
-                if request.auth:
-                    lh_model = LoanHistory(response=response, user=request.user)
-                    lh_model.save()
+                lh_model = LoanHistory(response=response, user=request.user)
+                lh_model.save()
             return Response(response)
 
         return Response(serializer.errors)
@@ -152,13 +171,19 @@ class MarketplaceViewSet(viewsets.ViewSet):
 
 
 class PaymentsGraphViewSet(viewsets.ViewSet):
+    serializer_class = PaymentsGraphSerializer
+
     def create(self, request):
-        serializer = PaymentsGraphSerializer(data=request.data)
+        serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():
             response = payments_graph_method(serializer.validated_data)
 
             # TODO: Check auth if needed
+            print(request.user)
+            if request.auth:
+                pg_model = PaymentsGraphHistory(response=response, user=request.user)
+                pg_model.save()
             return Response(response)
 
         return Response(serializer.errors)

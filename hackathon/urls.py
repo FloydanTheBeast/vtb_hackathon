@@ -28,6 +28,7 @@ from vtb_app import viewsets
 router = DefaultRouter()
 router.register(r'search_history', viewsets.SearchHistoryViewSet)
 router.register(r'loan_history', viewsets.LoanHistoryViewSet)
+router.register(r'payments_graph_history', viewsets.PaymentsGraphHistoryViewSet)
 router.register(r'extra_user_data', viewsets.ExtraUserDataViewSet)
 router.register(r'car_recognize', viewsets.CarRecognizeViewSet, basename='car_recognize')
 router.register(r'car_loan', viewsets.CarLoanViewSet, basename='car_loan')

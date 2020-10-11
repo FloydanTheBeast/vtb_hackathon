@@ -88,6 +88,12 @@ class LoanHistorySerializer(serializers.ModelSerializer):
         exclude = ['user']
 
 
+class PaymentsGraphHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LoanHistory
+        exclude = ['user']
+
+
 class ExtraUserDataSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(allow_blank=True, allow_null=True, required=False)
     income_amount = serializers.IntegerField(allow_null=True, required=False)
@@ -124,7 +130,7 @@ class CarInfoSerializer(serializers.Serializer):
 
 class PaymentsGraphSerializer(serializers.Serializer):
     contractRate = serializers.FloatField()
-    lastPayment = serializers.IntegerField()
-    loanAmount = serializers.IntegerField()
-    payment = serializers.IntegerField()
+    lastPayment = serializers.FloatField()
+    loanAmount = serializers.FloatField()
+    payment = serializers.FloatField()
     term = serializers.IntegerField()
