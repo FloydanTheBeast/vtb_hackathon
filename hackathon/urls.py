@@ -31,6 +31,8 @@ router.register(r'loan_history', viewsets.LoanHistoryViewSet)
 router.register(r'extra_user_data', viewsets.ExtraUserDataViewSet)
 router.register(r'car_recognize', viewsets.CarRecognizeViewSet, basename='car_recognize')
 router.register(r'car_loan', viewsets.CarLoanViewSet, basename='car_loan')
+router.register(r'marketplace_search', viewsets.MarketplaceViewSet, basename='marketplace_search')
+router.register(r'payments_graph', viewsets.PaymentsGraphViewSet, basename='payments_graph')
 
 api_urlpatterns = [
     path('accounts/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

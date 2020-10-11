@@ -6,6 +6,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import mixins
 from .vtb_api import *
+import json
 
 
 class TestViewSet(viewsets.ViewSet):
@@ -124,24 +125,36 @@ class CarLoanViewSet(viewsets.ViewSet):
                     lh_model = LoanHistory(response=response, user=request.user)
                     lh_model.save()
             return Response(response)
+
         return Response(serializer.errors)
 
 
-# class CalculateViewSet(viewsets.ViewSet):
-#     serializer_class = CarLoanSerializer
-#
-#     def list(self, request):
-#         return Response('Calculate Method')
-#         pass
-#
-#     def create(self, request):
-#         serializer = self.serializer_class(data=request.data)
-#         if serializer.is_valid():
-#             data = serializer.validated_data
-#             response = request_vtb_api(serializer.data, 'carloan')
-#             if request.auth:
-#                 if request.auth:
-#                     lh_model = LoanHistory(response=response, user=request.user)
-#                     lh_model.save()
-#             return Response(response)
-#         return Response(serializer.errors)
+class MarketplaceViewSet(viewsets.ViewSet):
+    def create(self, request):
+        query = request.data.get('query', '')
+
+        with open('marketplace.json', 'r') as file:
+            marketplaceData = json.load(file)
+
+            if query in marketplaceData:
+                serializer = CarInfoSerializer(data = marketplaceData[query])
+
+                if serializer.is_valid():
+                    return Response(marketplaceData[query])
+
+                return Response(serializer.errors, status = 400)
+
+        return Response({ error: 'No cars have been found' }, status = 400)
+
+
+class PaymentsGraphViewSet(viewsets.ViewSet):
+    def create(self, request):
+        serializer = PaymentsGraphSerializer(data = request.data)
+
+        if serializer.is_valid():
+            response = payments_graph_method(serializer.validated_data)
+
+            # TODO: Check auth if needed
+            return Response(response)
+
+        return Response(serializer.errors)

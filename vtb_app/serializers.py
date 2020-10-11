@@ -99,3 +99,27 @@ class ExtraUserDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExtraUserData
         exclude = ['user']
+
+
+class SpecsSerializer(serializers.Serializer):
+    speedLimit: serializers.CharField()
+    acceleration: serializers.CharField()
+    fuelConsumtion: serializers.CharField()
+    horsePowers: serializers.CharField()
+
+
+class CarInfoSerializer(serializers.Serializer):
+    make = serializers.CharField()
+    model = serializers.CharField()
+    types = serializers.ListField(child = serializers.CharField())
+    imageUrl = serializers.CharField()
+    minPrice = serializers.IntegerField()
+    maxPrice = serializers.IntegerField()
+    specs = SpecsSerializer()
+
+class PaymentsGraphSerializer(serializers.Serializer):
+    contractRate = serializers.FloatField()
+    lastPayment = serializers.IntegerField()
+    loanAmount = serializers.IntegerField()
+    payment = serializers.IntegerField()
+    term = serializers.IntegerField()
