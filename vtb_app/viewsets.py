@@ -123,7 +123,7 @@ class CarRecognizeViewSet(viewsets.ViewSet):
             if not request.user.is_anonymous:
                 sh_model = SearchHistory(response=response, user=request.user)
                 sh_model.save()
-            return Response(response)
+            return Response(json.loads(response))
         return Response(serializer.errors)
 
 
@@ -142,7 +142,7 @@ class CarLoanViewSet(viewsets.ViewSet):
             if not request.user.is_anonymous:
                 lh_model = LoanHistory(response=response, user=request.user)
                 lh_model.save()
-            return Response(response)
+            return Response(json.loads(response))
 
         return Response(serializer.errors)
 
@@ -182,6 +182,6 @@ class PaymentsGraphViewSet(viewsets.ViewSet):
             if not request.user.is_anonymous:
                 pg_model = PaymentsGraphHistory(response=response, user=request.user)
                 pg_model.save()
-            return Response(response)
+            return Response(json.loads(response))
 
         return Response(serializer.errors)

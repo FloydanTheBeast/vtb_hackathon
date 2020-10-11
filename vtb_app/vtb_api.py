@@ -27,7 +27,7 @@ def car_recognize_method(image):
         cars = json.loads(r.text).get("probabilities")
         cars = list(cars.items())
         cars.sort(key=lambda i: i[1], reverse=True)
-        return {"car": cars[0]}
+        return json.dumps({"car": cars[0]})
     return r.text
 
 
@@ -44,7 +44,7 @@ def request_vtb_api(data, method):
     r = requests.post(url, data=json.dumps(data), headers=headers)
 
     if r.status_code == 200:
-        return r.text
+        return json.dumps(r.text)
     return r.text
 
 
@@ -53,7 +53,7 @@ def calculate(data):
     r = requests.post(url, data=json.dumps(data), headers=headers)
 
     if r.status_code == 200:
-        return r.text
+        return json.dumps(r.text)
     return r.text
 
 
@@ -62,7 +62,7 @@ def car_loan_method(data):
     r = requests.post(url, data=json.dumps(data), headers=headers)
 
     if r.status_code == 200:
-        return r.text
+        return json.dumps(r.text)
     return r.text
 
 
@@ -77,5 +77,4 @@ def payments_graph_method(data):
         data['payments'] = trimPaymentsGraph(payments)
 
         return json.dumps(data)
-
     return r.text
