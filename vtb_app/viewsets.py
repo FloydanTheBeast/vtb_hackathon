@@ -120,7 +120,7 @@ class CarRecognizeViewSet(viewsets.ViewSet):
         if serializer.is_valid():
             photo = request.data.get('photo')
             response = car_recognize_method(photo)
-            if request.auth:
+            if not request.user.is_anonymous:
                 sh_model = SearchHistory(response=response, user=request.user)
                 sh_model.save()
             return Response(response)
@@ -139,8 +139,7 @@ class CarLoanViewSet(viewsets.ViewSet):
         if serializer.is_valid():
             data = serializer.validated_data
             response = request_vtb_api(data, 'carloan')
-            print(request.auth)
-            if request.auth:
+            if not request.user.is_anonymous:
                 lh_model = LoanHistory(response=response, user=request.user)
                 lh_model.save()
             return Response(response)
@@ -180,8 +179,7 @@ class PaymentsGraphViewSet(viewsets.ViewSet):
             response = payments_graph_method(serializer.validated_data)
 
             # TODO: Check auth if needed
-            print(request.user)
-            if request.auth:
+            if not request.user.is_anonymous:
                 pg_model = PaymentsGraphHistory(response=response, user=request.user)
                 pg_model.save()
             return Response(response)
