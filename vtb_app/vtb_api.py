@@ -69,7 +69,7 @@ def car_loan_method(data):
 
 def payments_graph_method(data):
     url = f"{api_base_url}/payments-graph"
-    r = requests.post(url, data = json.dumps(data), headers = headers)
+    r = requests.post(url, data=json.dumps(data), headers=headers)
 
     if r.status_code == 200:
         data = json.loads(r.text)
@@ -78,7 +78,5 @@ def payments_graph_method(data):
         data['payments'] = trimPaymentsGraph(payments)
 
         return data
-    
+
     return r.text
-
-

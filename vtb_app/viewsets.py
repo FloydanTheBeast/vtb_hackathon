@@ -130,26 +130,30 @@ class CarLoanViewSet(viewsets.ViewSet):
 
 
 class MarketplaceViewSet(viewsets.ViewSet):
+    serializer_class = QueryCarModelSerializer
+
     def create(self, request):
-        query = request.data.get('query', '')
+        query_serializer = self.serializer_class(data=request.data)
+        if query_serializer.is_valid():
+            query = query_serializer.validated_data.get('query')
 
-        with open('marketplace.json', 'r') as file:
-            marketplaceData = json.load(file)
+            with open('marketplace.json', 'r') as file:
+                marketplaceData = json.load(file)
 
-            if query in marketplaceData:
-                serializer = CarInfoSerializer(data = marketplaceData[query])
+                if query in marketplaceData:
+                    serializer = CarInfoSerializer(data=marketplaceData[query])
 
-                if serializer.is_valid():
-                    return Response(marketplaceData[query])
+                    if serializer.is_valid():
+                        return Response(marketplaceData[query])
 
-                return Response(serializer.errors, status = 400)
+                    return Response(serializer.errors, status=400)
 
-        return Response({ error: 'No cars have been found' }, status = 400)
+        return Response({"error": 'No cars have been found'}, status=400)
 
 
 class PaymentsGraphViewSet(viewsets.ViewSet):
     def create(self, request):
-        serializer = PaymentsGraphSerializer(data = request.data)
+        serializer = PaymentsGraphSerializer(data=request.data)
 
         if serializer.is_valid():
             response = payments_graph_method(serializer.validated_data)

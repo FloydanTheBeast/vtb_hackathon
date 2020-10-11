@@ -14,6 +14,10 @@ class CarRecognizeSerializer(serializers.Serializer):
     photo = serializers.CharField()
 
 
+class QueryCarModelSerializer(serializers.Serializer):
+    query = serializers.CharField()
+
+
 class PersonSerializer(serializers.Serializer):
     birth_date_time = serializers.CharField()
     birth_place = serializers.CharField()
@@ -111,11 +115,12 @@ class SpecsSerializer(serializers.Serializer):
 class CarInfoSerializer(serializers.Serializer):
     make = serializers.CharField()
     model = serializers.CharField()
-    types = serializers.ListField(child = serializers.CharField())
+    types = serializers.ListField(child=serializers.CharField())
     imageUrl = serializers.CharField()
     minPrice = serializers.IntegerField()
     maxPrice = serializers.IntegerField()
     specs = SpecsSerializer()
+
 
 class PaymentsGraphSerializer(serializers.Serializer):
     contractRate = serializers.FloatField()
